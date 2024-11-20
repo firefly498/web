@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <link rel="stylesheet" href="style.css">
+    <style type="text/css">
+        body {
+            background-image: url(../image/firefly1.jpg);
+			
+        }
+
+     
+        p {
+            font-size: 18px; 
+            text-align: left; 
+            margin-left: 20px; 
+        }
+
+        .animated-text {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 24px;
+            font-weight: bold;
+            animation: colorChange 6s infinite; 
+        }
+
+        @keyframes colorChange {
+            0% { color: red; }
+            25% { color: orange; }
+            50% { color: blue; }
+            75% { color: green; }
+            100% { color: red; }
+        }
+
+       
+        .message {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 50px;
+            color: #267CCB;
+            opacity: 0;
+            animation: fadeInOut 6s ease-in-out forwards; 
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1; 
+            }
+            75% {
+                opacity: 1; /
+            }
+            100% {
+                opacity: 0; 
+  
+        }
+    </style>
+</head>
+<body>
+    <div id="mybox">
+        <header>
+            <div class="banner">
+                <img src="../image/banner.png" alt="" width="82%" height="176">
+            </div>
+            <nav>
+                <a href="index.html">BackPage</a>
+              <a href="index.html">Home</a>
+                <a href="travel.html">Travel</a>
+                <a href="story.html">Story</a>
+                <a href="music.html">Music</a>
+                <a href="game.html">Game</a>
+            </nav>
+        </header>
+
+      <div class="animated-text">
+            <h2>CLICK ANYWHERE TO PLAY THE MUSIC!</h2>
+          <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>也许你和我并无交集，</p>
+          <p>&nbsp;</p>
+            <p>也许你和我趣舍万殊。</p>
+            <p>&nbsp;</p>
+            <p>但我愿意在此分享我喜欢的事物。</p>
+            <p>&nbsp;</p>
+            <p>我希望告诉你，在我的眼里，</p>
+            <p>&nbsp;</p>
+            <p>世界恰如背景图一样梦幻美好。</p>
+            <p>&nbsp;</p>
+            <p>伴着柔和的音乐，心情是否更加愉悦？</p>
+            <p>&nbsp;</p>
+          <p>那么就跟着导航，看看我眼中的美好吧！</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+      </div>
+		   <body onclick="document.getElementById('myAudio').play()">
+<audio id="myAudio" controls loop>
+  <source src="../audio/fireflymusic1.mp3" type="audio/mpeg">
+</audio>
+
+        <div class="message" id="messageDisplay"></div>
+
+        <script>
+            // 定义要循环播放的句子
+            const messages = [
+                "老当益壮，宁移白首之心？穷且益坚，不坠青云之志。",
+                "真的猛士，敢于直面惨淡的人生，敢于正视淋漓的鲜血。",
+                "我梦见一株焦土，一株破土而生的新蕊。它迎着朝阳绽放，向我低语呢喃。",
+                "生命好在毫无意义，才容得下各自赋予意义。"
+            ];
+            let index = 0;
+
+            function showMessage() {
+                const messageDisplay = document.getElementById("messageDisplay");
+
+                // 设置当前句子
+                messageDisplay.innerHTML = messages[index];
+
+                // 重置透明度和动画，确保每次显示都缓缓出现
+                messageDisplay.style.opacity = 0;
+                messageDisplay.style.animation = "none"; // 重置动画
+                void messageDisplay.offsetWidth; // 触发重绘，以重新应用动画
+                messageDisplay.style.animation = "fadeInOut 6s ease-in-out forwards"; // 使用淡入淡出动画
+
+                // 更新索引，实现循环播放
+                index = (index + 1) % messages.length;
+
+                // 设置每句显示 6 秒后切换
+                setTimeout(showMessage, 6000);
+            }
+
+            // 启动循环播放
+            showMessage();
+        </script>
+
+     
+
+        <footer>
+            copyright©️FireFly
+        </footer>
+    </div>
+</body>
+</html>
